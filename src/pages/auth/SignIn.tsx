@@ -61,64 +61,7 @@ const SignIn: React.FC = () => {
                 <h2 className="text-2xl font-bold text-center text-primary-600">
                     Iniciar Sesión
                 </h2>
-
-                <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-                    <InputField
-                        id="email"
-                        label="Correo Electrónico"
-                        type="email"
-                        placeholder="correo@example.com"
-                        autocomplete="email"
-                        register={register("email", {
-                            required: "El correo es obligatorio",
-                            pattern: {
-                                value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
-                                message: "Correo no válido",
-                            },
-                        })}
-                        error={errors.email?.message}
-                    />
-                    <InputField
-                        id="password"
-                        label="Contraseña"
-                        type="password"
-                        placeholder="********"
-                        autocomplete="current-password"
-                        register={register("password", {
-                            required: "La contraseña es obligatoria",
-                            minLength: {
-                                value: 6,
-                                message: "Debe tener al menos 6 caracteres",
-                            },
-                        })}
-                        error={errors.password?.message}
-                    />
-
-                    <button
-                        type="submit"
-                        disabled={isPending}
-                        className={`w-full py-2 rounded-lg font-semibold transition ${
-                            isPending
-                                ? "bg-gray-400 cursor-not-allowed"
-                                : "bg-primary-600 text-white hover:bg-primary-700"
-                        }`}
-                    >
-                        {isPending ? (
-                            <div className="flex justify-center mt-4">
-                                <OrbitProgress
-                                    size={"medium"}
-                                    color="#2460E2"
-                                    text=""
-                                    textColor=""
-                                />
-                            </div>
-                        ) : (
-                            "Iniciar Sesión"
-                        )}
-                    </button>
-                </form>
-
-                {isPending && (
+                {isPending ? (
                     <div className="flex justify-center mt-4">
                         <OrbitProgress
                             size={"medium"}
@@ -127,6 +70,54 @@ const SignIn: React.FC = () => {
                             textColor=""
                         />
                     </div>
+                ) : (
+                    <form
+                        className="space-y-4"
+                        onSubmit={handleSubmit(onSubmit)}
+                    >
+                        <InputField
+                            id="email"
+                            label="Correo Electrónico"
+                            type="email"
+                            placeholder="correo@example.com"
+                            autocomplete="email"
+                            register={register("email", {
+                                required: "El correo es obligatorio",
+                                pattern: {
+                                    value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+                                    message: "Correo no válido",
+                                },
+                            })}
+                            error={errors.email?.message}
+                        />
+                        <InputField
+                            id="password"
+                            label="Contraseña"
+                            type="password"
+                            placeholder="********"
+                            autocomplete="current-password"
+                            register={register("password", {
+                                required: "La contraseña es obligatoria",
+                                minLength: {
+                                    value: 6,
+                                    message: "Debe tener al menos 6 caracteres",
+                                },
+                            })}
+                            error={errors.password?.message}
+                        />
+
+                        <button
+                            type="submit"
+                            disabled={isPending}
+                            className={`w-full py-2 rounded-lg font-semibold transition ${
+                                isPending
+                                    ? "bg-gray-400 cursor-not-allowed"
+                                    : "bg-primary-600 text-white hover:bg-primary-700"
+                            }`}
+                        >
+                            "Iniciar Sesión"
+                        </button>
+                    </form>
                 )}
 
                 <Divider />

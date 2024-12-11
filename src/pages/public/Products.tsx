@@ -164,7 +164,7 @@ const Products: React.FC = () => {
                                 <button
                                     key={category._id}
                                     onClick={() =>
-                                        handleCategoryChange(category._id)
+                                        handleCategoryChange(category._id!)
                                     }
                                     className={`px-4 py-2 border rounded-lg ${
                                         selectedCategory === category._id

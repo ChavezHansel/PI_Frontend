@@ -42,7 +42,7 @@ const EditProduct: React.FC = () => {
             setProductData({
                 name: product.name,
                 description: product.description,
-                category: product.category._id,
+                category: product.category._id!,
                 variations: product.variations,
                 discount: product.discount,
                 isActive: product.isActive,
